@@ -8,14 +8,16 @@ on:
 
 jobs:
   security-scan:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, digistratum, poc]
     steps:
       - uses: actions/checkout@v4
-      - name: Security Scan (Mock)
+      - name: Security Scan (Mock - Self-hosted)
         run: |
-          echo "Running security scan..."
+          echo "Running security scan on self-hosted runner..."
+          echo "Runner: $(hostname)"
+          echo "Platform: $(uname -a)"
           sleep 30  # Simulate ~5 min scan time (reduced for testing)
-          echo "Security scan completed"
+          echo "Security scan completed on self-hosted runner"
 
   backend-test-build:
     runs-on: ubuntu-latest
